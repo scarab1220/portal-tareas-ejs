@@ -1,12 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('./db');
+const path = require('path');
 const soapTest = require('./soap-client');
 
 const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(Path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Render task list
 app.get('/', async (req, res) => {

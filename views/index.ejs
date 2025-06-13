@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Tareas EJS</title>
+</head>
+<body>
+  <h1>Tasks</h1>
+  <form method="POST" action="/add">
+    <input name="title" placeholder="New task..." required />
+    <button type="submit">Add</button>
+  </form>
+
+  <ul>
+    <% tasks.forEach(task => { %>
+      <li>
+        <form method="POST" action="/toggle/<%= task.id %>" style="display:inline;">
+          <button type="submit"><%= task.is_completed ? "✅" : "⬜" %></button>
+        </form>
+        <%= task.title %>
+        <form method="POST" action="/delete/<%= task.id %>" style="display:inline;">
+          <button type="submit">🗑</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+
+  <p><a href="/soap-test">Run SOAP Test</a></p>
+</body>
+</html>
